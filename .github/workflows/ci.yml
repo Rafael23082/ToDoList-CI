@@ -6,9 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - run: npm install
-      - run: npm test
-        working-directory: frontend
+          
+      - name: Install dependencies and test (Frontend)
+        working-directory: frontend  # Critical change
+        run: |
+          npm install
+          npm test
+          
+      # Add this if you have backend tests too
+      - name: Install dependencies and test (Backend)
+        working-directory: backend
+        run: |
+          npm install
+          npm test
