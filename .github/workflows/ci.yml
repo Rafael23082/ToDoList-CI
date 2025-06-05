@@ -12,8 +12,12 @@ jobs:
       with:
         node-version: '20.x'
     
-    - name: Install and test frontend
+    - name: Install dependencies
       working-directory: frontend
       run: |
         npm install
-        npm test
+        npm install react-scripts --save-dev
+        
+    - name: Run tests
+      working-directory: frontend
+      run: npm test
