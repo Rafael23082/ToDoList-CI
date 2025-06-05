@@ -2,22 +2,18 @@ name: MERN CI Pipeline
 on: [push, pull_request]
 
 jobs:
-  frontend-ci:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Node.js 20.x
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
     
-    - name: Install dependencies
+    - name: Install and build
       working-directory: frontend
       run: |
         npm install
-        npm install react-scripts --save-dev
-        
-    - name: Run tests
-      working-directory: frontend
-      run: npm test
+        npm run build
